@@ -23,19 +23,11 @@ export function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-background.jpg"
-          alt="Aman Shah - Web Developer Background"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-      </div>
+  
       <div className="relative z-10 text-center text-foreground">
         <motion.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <Image
-            src="/aman-avatar.png"
+            src="/profile.jpg"
             alt="Aman Shah - jrAman"
             width={150}
             height={150}
@@ -56,7 +48,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          MERN Stack & Next.js Developer | jrAman | Arniko Coder
+          MERN Stack & Next.js Developer | jrAman
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -71,7 +63,7 @@ export function Hero() {
       
       {/* ✅ Fixed: Animated "HOME" text with proper rotation */}
       <motion.div
-        className="hidden lg:block absolute left-[-46px] top-1/2 z-20"
+        className="hidden lg:block absolute left-[-43px] top-1/2 z-20"
         initial={{ x: 0, opacity: 1, rotate: -90 }}  // Ensure it starts rotated
         animate={{ x: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0, rotate: -90 }} // Keep rotation consistent
         transition={{ duration: 0.5, ease: "easeInOut" }}

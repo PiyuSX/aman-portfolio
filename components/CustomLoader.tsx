@@ -39,7 +39,7 @@ export const CustomLoader = () => {
         className="relative w-32 h-32 mb-4"
       >
         <Image
-          src="/loader-image.png"
+          src="/load.png"
           alt="Aman Shah - Loading"
           layout="fill"
           objectFit="contain"
