@@ -61,7 +61,7 @@ export default function RootLayout({
           <div className="relative min-h-screen w-full bg-background text-foreground">
             <CustomLoader />
             <Sidebar />
-            <main className="w-full md:ml-20">{children}</main>
+            <main className="w-full md:ml-20 overflow-x-hidden">{children}</main>
             <ScrollToTopButton />
           </div>
         </ThemeProvider>

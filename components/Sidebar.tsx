@@ -53,10 +53,15 @@ export function Sidebar() {
     e.preventDefault()
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      })
     }
   }
 
+  // ✅ Fixed MobileNav - Removed duplicate "X"
   const MobileNav = () => (
     <Sheet>
       <SheetTrigger asChild>
@@ -64,16 +69,15 @@ export function Sidebar() {
           <Menu className="h-6 w-6" />
         </Button>
       </SheetTrigger>
+
       <SheetContent side="right" className="w-[300px] bg-background p-0">
         <div className="flex flex-col h-full">
+          {/* Header (Removed extra X button) */}
           <div className="flex justify-between items-center p-4 border-b border-border">
             <span className="text-xl font-bold text-primary">Aman</span>
-            <SheetClose asChild>
-              <Button variant="ghost" size="icon" className="text-primary">
-                <X className="h-6 w-6" />
-              </Button>
-            </SheetClose>
           </div>
+
+          {/* Navigation Links */}
           <nav className="flex-1 p-4">
             {navItems.map((item) => (
               <SheetClose asChild key={item.href}>
@@ -90,7 +94,9 @@ export function Sidebar() {
               </SheetClose>
             ))}
           </nav>
-          <div className="p-4 border-t border-border">
+
+          {/* Theme Toggle Button */}
+          <div className="p-4 border-t border-border flex justify-center">
             <Button
               variant="ghost"
               size="icon"
@@ -112,17 +118,17 @@ export function Sidebar() {
         <div className="flex justify-center mb-8">
           <Image src="/logo.png" alt="Logo" width={40} height={40} />
         </div>
-        <nav className="flex-1 flex flex-col items-center justify-center">
+        <nav className="flex-1 flex flex-col items-center justify-center gap-8">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(e) => scrollToSection(e, item.href)}
-              className={`group flex items-center justify-center w-20 py-4 transition-colors hover:text-primary ${
+              className={`group flex items-center justify-center w-full py-6 transition-colors hover:text-primary ${
                 activeSection === item.href ? "text-primary" : "text-muted-foreground"
               }`}
             >
-              <span className="transform -rotate-90 origin-center text-sm font-medium whitespace-nowrap">
+              <span className="transform -rotate-90 text-sm font-medium whitespace-nowrap">
                 {item.name}
               </span>
             </a>
@@ -150,4 +156,3 @@ export function Sidebar() {
     </>
   )
 }
-

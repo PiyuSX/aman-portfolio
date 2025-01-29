@@ -2,7 +2,6 @@
 
 import React from "react"
 import { motion } from "framer-motion"
-import { RotatedTitle } from "@/components/RotatedTitle"
 
 const experiences = [
   {
@@ -23,12 +22,35 @@ const experiences = [
     period: "Jun 2018 - Feb 2020",
     description: "Assisted in the development of web applications and gained expertise in front-end technologies.",
   },
+  {
+    title: "Junior Web Developer",
+    company: "StartUp Hub",
+    period: "Jun 2018 - Feb 2020",
+    description: "Assisted in the development of web applications and gained expertise in front-end technologies.",
+  },
 ]
 
 export function Experience() {
+  const [isVisible, setIsVisible] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("experience")
+      if (!section) return
+
+      const rect = section.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+
+      // Show when more than 40% of "Experience" is in view, hide when scrolled away
+      setIsVisible(rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.3)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <section id="experience" className="relative py-16 md:py-24 bg-background text-foreground">
-      <RotatedTitle title="EXPERIENCE" />
       <div className="container px-4 md:px-6">
         <div className="space-y-8">
           {experiences.map((exp, index) => (
@@ -52,7 +74,16 @@ export function Experience() {
           ))}
         </div>
       </div>
+
+      {/* Rotated "EXPERIENCE" title with animation */}
+      <motion.div
+        className="hidden lg:block absolute left-[-93px] top-1/2 z-20"
+        initial={{ x: -100, opacity: 0, rotate: -90 }}
+        animate={{ x: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0, rotate: -90 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+      >
+        <h2 className="text-4xl font-bold text-foreground">EXPERIENCE</h2>
+      </motion.div>
     </section>
   )
 }
-

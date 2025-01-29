@@ -1,15 +1,28 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { RotatedTitle } from "@/components/RotatedTitle"
 
 export function Hero() {
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById("home")
+      if (!heroSection) return
+
+      const rect = heroSection.getBoundingClientRect()
+      setIsVisible(rect.top >= -100 && rect.bottom >= window.innerHeight / 2)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
-      <RotatedTitle title="HOME" />
       <div className="absolute inset-0 z-0">
         <Image
           src="/hero-background.jpg"
@@ -55,7 +68,16 @@ export function Hero() {
           </Button>
         </motion.div>
       </div>
+      
+      {/* ✅ Fixed: Animated "HOME" text with proper rotation */}
+      <motion.div
+        className="hidden lg:block absolute left-[-46px] top-1/2 z-20"
+        initial={{ x: 0, opacity: 1, rotate: -90 }}  // Ensure it starts rotated
+        animate={{ x: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0, rotate: -90 }} // Keep rotation consistent
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <h2 className="text-4xl font-bold text-foreground">HOME</h2>
+      </motion.div>
     </section>
   )
 }
-

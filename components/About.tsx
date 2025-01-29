@@ -1,15 +1,31 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { RotatedTitle } from "@/components/RotatedTitle"
 
 export function About() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const aboutSection = document.getElementById("about")
+      if (!aboutSection) return
+
+      const rect = aboutSection.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+
+      // Show when more than 40% of "About" is in view, hide when scrolled up
+      setIsVisible(rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.3)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <section id="about" className="relative min-h-screen flex items-center bg-background text-foreground">
-      <RotatedTitle title="ABOUT" />
       <div className="container px-4 md:px-6 py-24">
         <div className="grid gap-6 items-center md:grid-cols-2 md:gap-12">
           <motion.div
@@ -49,7 +65,16 @@ export function About() {
           </motion.div>
         </div>
       </div>
+
+      {/* ✅ Rotated "ABOUT" title with smooth scrolling animation */}
+      <motion.div
+        className="hidden lg:block absolute left-[-49px] top-1/2 z-20"
+        initial={{ x: -100, opacity: 0, rotate: -90 }}
+        animate={{ x: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0, rotate: -90 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+      >
+        <h2 className="text-4xl font-bold text-foreground">ABOUT</h2>
+      </motion.div>
     </section>
   )
 }
-

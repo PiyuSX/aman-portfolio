@@ -9,6 +9,7 @@ const Skills = dynamic(() => import("@/components/Skills").then((mod) => mod.Ski
 const Projects = dynamic(() => import("@/components/Projects").then((mod) => mod.Projects))
 const Experience = dynamic(() => import("@/components/Experience").then((mod) => mod.Experience))
 const Contact = dynamic(() => import("@/components/Contact").then((mod) => mod.Contact))
+const Footer = dynamic(() => import("@/components/Footer").then((mod) => mod.Footer)) // Added Footer
 
 export default function Home() {
   return (
@@ -20,8 +21,8 @@ export default function Home() {
         <Projects />
         <Experience />
         <Contact />
+        <Footer /> 
       </div>
     </PageTransition>
   )
 }
-

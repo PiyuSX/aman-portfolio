@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { RotatedTitle } from "@/components/RotatedTitle"
 
 const projects = [
   {
@@ -35,9 +34,26 @@ const projects = [
 ]
 
 export function Projects() {
+  const [isVisible, setIsVisible] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("projects")
+      if (!section) return
+
+      const rect = section.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+
+      // Show when more than 40% of "Projects" is in view, hide when scrolled away
+      setIsVisible(rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.3)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <section id="projects" className="relative py-16 md:py-24 bg-background text-foreground">
-      <RotatedTitle title="PROJECTS" />
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
@@ -86,7 +102,16 @@ export function Projects() {
           ))}
         </div>
       </div>
+
+      {/* Rotated "PROJECTS" title with animation */}
+      <motion.div
+        className="hidden lg:block absolute left-[-75px] top-1/2 z-20"
+        initial={{ x: -100, opacity: 0, rotate: -90 }}
+        animate={{ x: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0, rotate: -90 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+      >
+        <h2 className="text-4xl font-bold text-foreground">PROJECTS</h2>
+      </motion.div>
     </section>
   )
 }
-
