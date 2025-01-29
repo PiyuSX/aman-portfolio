@@ -117,7 +117,7 @@ export function Sidebar() {
       <div className="flex flex-col h-full">
         <div className="flex justify-center mb-8">
           {/*<Image src="/bglogo.png" alt="Logo" width={40} height={40} /> */}
-          <span className="text-xl font-bold text-primary">AMAN</span>
+          <span className="text-x font-bold text-primary">jr.AMAN</span>
         </div>
         <nav className="flex-1 flex flex-col items-center justify-center gap-8">
           {navItems.map((item) => (
