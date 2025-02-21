@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 
 export function About() {
   const [isVisible, setIsVisible] = useState(false)
@@ -27,7 +26,7 @@ export function About() {
   return (
     <section id="about" className="relative min-h-screen flex items-center bg-background text-foreground">
       <div className="container px-4 md:px-6 py-24">
-        <div className="grid gap-6 items-center md:grid-cols-2 md:gap-12">
+        <div className="grid gap-6 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -47,21 +46,6 @@ export function About() {
             <Button className="mt-4 bg-primary hover:bg-primary/90 text-primary-foreground" variant="outline">
               Download Resume
             </Button>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="flex justify-center"
-          >
-            <Image
-              src="/aman-coding.png"
-              alt="Aman Shah Coding"
-              width={400}
-              height={400}
-              className="rounded-lg shadow-lg"
-            />
           </motion.div>
         </div>
       </div>

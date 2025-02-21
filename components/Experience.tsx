@@ -5,28 +5,22 @@ import { motion } from "framer-motion"
 
 const experiences = [
   {
-    title: "Senior Full Stack Developer",
-    company: "Tech Solutions Inc.",
-    period: "Jan 2022 - Present",
-    description: "Leading development of complex web applications using MERN stack and Next.js.",
+    title: "Computer Science Student",
+    institution: "University Name", // Replace with your university
+    period: "2024 - Present", // Adjust dates as needed
+    description: "Currently pursuing a degree in Computer Science, focusing on algorithms, data structures, and web development technologies including React and JavaScript.",
   },
   {
-    title: "Full Stack Developer",
-    company: "Web Innovators",
-    period: "Mar 2020 - Dec 2021",
-    description: "Developed and maintained various web applications using React and Node.js.",
+    title: "Personal Project Developer",
+    institution: "Self-Directed Learning",
+    period: "Jun 2023 - Present", // Adjust dates as needed
+    description: "Building personal projects to enhance skills in full-stack development, including creating web applications with Next.js and exploring modern frameworks.",
   },
   {
-    title: "Junior Web Developer",
-    company: "StartUp Hub",
-    period: "Jun 2018 - Feb 2020",
-    description: "Assisted in the development of web applications and gained expertise in front-end technologies.",
-  },
-  {
-    title: "Junior Web Developer",
-    company: "StartUp Hub",
-    period: "Jun 2018 - Feb 2020",
-    description: "Assisted in the development of web applications and gained expertise in front-end technologies.",
+    title: "Coursework Contributor",
+    institution: "University Name", // Replace with your university
+    period: "Sep 2022 - Present", // Adjust dates as needed
+    description: "Collaborating on academic projects involving programming fundamentals, software design patterns, and database management systems.",
   },
 ]
 
@@ -64,7 +58,7 @@ export function Experience() {
             >
               <div className="md:w-1/4">
                 <h3 className="font-bold text-primary">{exp.title}</h3>
-                <p className="text-sm text-muted-foreground">{exp.company}</p>
+                <p className="text-sm text-muted-foreground">{exp.institution}</p>
                 <p className="text-sm text-muted-foreground">{exp.period}</p>
               </div>
               <div className="md:w-3/4 mt-2 md:mt-0">
