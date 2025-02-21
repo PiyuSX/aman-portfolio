@@ -9,7 +9,7 @@ import type React from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Aman Shah | jrAman | MERN Stack & Next.js Developer",
+  title: "Aman Shah | Portfolio",
   description:
     "Portfolio of Aman Shah (jrAman), a skilled MERN Stack and Next.js Developer from Nepal. Arniko coder specializing in web development.",
   keywords: [
@@ -28,14 +28,14 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.amanshah.com",
+    url: "https://www.jraman.me",
     site_name: "Aman Shah Portfolio",
-    title: "Aman Shah | jrAman | MERN Stack & Next.js Developer",
+    title: "Aman Shah | jrAman | MERN Developer",
     description:
       "Portfolio of Aman Shah (jrAman), a skilled MERN Stack and Next.js Developer from Nepal. Arniko coder specializing in web development.",
     images: [
       {
-        url: "https://www.amanshah.com/og-image.jpg",
+        url: "https://www.jraman.me/profile.jpg",
         width: 1200,
         height: 630,
         alt: "Aman Shah - Web Developer",
@@ -56,6 +56,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/bglogo.png" />
+        <title>Aman Shah | Portfolio</title>
+      </head>
       <body className={`${inter.className} overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <div className="relative min-h-screen w-full bg-background text-foreground">
