@@ -56,7 +56,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
         >
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            View My Work
+            Scroll Down
           </Button>
         </motion.div>
       </div>
